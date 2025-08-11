@@ -1,0 +1,30 @@
+<!-- EasyAI Logo (Primary) -->
+<svg width="420" height="100" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EasyAI logo">
+  <title>EasyAI</title>
+  <defs>
+    <style>
+      .ea-color { fill: #9333EA; }
+      .ea-text { font: 700 56px/1.1 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
+    </style>
+  </defs>
+
+  <!-- Icon: Rounded square + geometric 'E' with nodes -->
+  <g transform="translate(12,12)">
+    <!-- Rounded square container -->
+    <rect x="0" y="0" rx="18" ry="18" width="96" height="96" class="ea-color" opacity="0.12"/>
+    <!-- Stylized 'E' -->
+    <g transform="translate(18,18)" class="ea-color">
+      <!-- three bars -->
+      <rect x="0" y="0" width="60" height="10" rx="5"/>
+      <rect x="0" y="25" width="46" height="10" rx="5"/>
+      <rect x="0" y="50" width="60" height="10" rx="5"/>
+      <!-- connection nodes hinting "AI" -->
+      <circle cx="70" cy="5" r="5"/>
+      <circle cx="58" cy="55" r="5"/>
+      <circle cx="70" cy="30" r="5"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="130" y="78" class="ea-text ea-color">EasyAI</text>
+</svg>
