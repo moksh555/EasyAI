@@ -21,6 +21,12 @@ app.use(requireAuth());
 app.use("/api/ai", aiRouter);
 app.use("/api/user", userRouter);
 
-app.listen(port, () => {
-  console.log("Server Sarted and running on port", port);
-});
+export default async function handler(req, res) {
+  try {
+    await ensureCloudinary();
+  } catch (e) {
+    console.error("Cloudinary init failed:", e);
+    // still respond; your routes may not need Cloudinary for every request
+  }
+  return app(req, res);
+}
