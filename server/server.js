@@ -7,7 +7,7 @@ import userRouter from "./routes/userroutes.js";
 import connectCloudinary from "./configs/cloudinary.js";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 await connectCloudinary();
 
 app.use(cors());
@@ -21,6 +21,6 @@ app.use(requireAuth());
 app.use("/api/ai", aiRouter);
 app.use("/api/user", userRouter);
 
-app.listen(port, () => {
-  console.log("Server Sarted and running on port", port);
+app.listen(PORT, () => {
+  console.log("Server Sarted and running on port", PORT);
 });
