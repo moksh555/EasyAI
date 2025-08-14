@@ -49,7 +49,6 @@ export const generateArticle = async (req, res) => {
     }
     res.json({ success: true, content });
   } catch (error) {
-    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };
@@ -92,7 +91,6 @@ export const generateBlogTitle = async (req, res) => {
     }
     res.json({ success: true, content: title });
   } catch (error) {
-    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };
@@ -133,7 +131,6 @@ export const generateImage = async (req, res) => {
 
     res.json({ success: true, content: secure_url });
   } catch (error) {
-    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };
@@ -164,7 +161,6 @@ export const removeImageBackground = async (req, res) => {
 
     res.json({ success: true, content: secure_url });
   } catch (error) {
-    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };
