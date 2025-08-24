@@ -7,14 +7,14 @@ import Markdown from "react-markdown";
 
 const BlogTitles = () => {
   const categories = [
-    { text: "General" },
-    { text: "Technology" },
-    { text: "Business" },
-    { text: "Health" },
-    { text: "Lifecycle" },
-    { text: "Education" },
-    { text: "Travel" },
-    { text: "Food" },
+    "General",
+    "Technology",
+    "Business",
+    "Health",
+    "Lifecycle",
+    "Education",
+    "Travel",
+    "Food",
   ];
 
   axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
@@ -29,7 +29,7 @@ const BlogTitles = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const prompt = `Generate the blog title for keyword ${input} in the catergory ${selectedCategory.text}`;
+      const prompt = `Generate the blog title for keyword ${input} in the catergory ${selectedCategory}`;
       const { data } = await axios.post(
         "/api/ai/generate-blog-title",
         {
@@ -72,18 +72,18 @@ const BlogTitles = () => {
           />
           <p className="mt-4 text-sm font-medium">Category</p>
           <div className="mt-3 flex gap-3 flex-wrap sm:max-w-9/11">
-            {categories.map((item, index) => {
+            {categories.map((item) => {
               return (
                 <span
-                  key={index}
+                  key={item}
                   onClick={() => setSelectedCategory(item)}
                   className={`text-xs px-4 py-1 border rounded-full cursor-pointer ${
-                    selectedCategory.text === item.text
+                    selectedCategory === item
                       ? "bg-purple-100 text-purple-700"
                       : "text-gray-500 border-gray-300"
                   }`}
                 >
-                  {item.text}
+                  {item}
                 </span>
               );
             })}

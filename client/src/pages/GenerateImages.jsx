@@ -6,13 +6,13 @@ import axios from "axios";
 
 const GenerateImages = () => {
   const style = [
-    { text: "Realistic Style" },
-    { text: "Ghibli Style" },
-    { text: "Anime Style" },
-    { text: "Cartoon Style" },
-    { text: "Fantasy Style" },
-    { text: "3D Style" },
-    { text: "Portrait Style" },
+    "Realistic Style",
+    "Ghibli Style",
+    "Anime Style",
+    "Cartoon Style",
+    "Fantasy Style",
+    "3D Style",
+    "Portrait Style",
   ];
 
   axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
@@ -28,7 +28,7 @@ const GenerateImages = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const prompt = `Give an image of ${input} with ${selectedStyle.text}`;
+      const prompt = `Give an image of ${input} with ${selectedStyle}`;
       const { data } = await axios.post(
         "/api/ai/generate-image",
         {
@@ -72,18 +72,18 @@ const GenerateImages = () => {
           />
           <p className="mt-4 text-sm font-medium">Style</p>
           <div className="mt-3 flex gap-3 flex-wrap sm:max-w-9/11">
-            {style.map((item, index) => {
+            {style.map((item) => {
               return (
                 <span
-                  key={index}
+                  key={item}
                   onClick={() => setSelectedStyle(item)}
                   className={`text-xs px-4 py-1 border rounded-full cursor-pointer ${
-                    selectedStyle.text === item.text
+                    selectedStyle === item
                       ? "bg-green-100 text-green-700"
                       : "text-gray-500 border-gray-300"
                   }`}
                 >
-                  {item.text}
+                  {item}
                 </span>
               );
             })}

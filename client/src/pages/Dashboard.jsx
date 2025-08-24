@@ -6,11 +6,13 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
 
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
+
 const Dashboard = () => {
   const [creations, setCreations] = useState([]);
   const [loading, setLoading] = useState(true);
   const { getToken } = useAuth();
-  axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
+
   const getDashBoardData = async () => {
     try {
       const { data } = await axios.get("/api/user/get-user-creations", {
@@ -20,7 +22,7 @@ const Dashboard = () => {
       if (data.success) {
         setCreations(data.creation);
       } else {
-        toast(data.message);
+        toast.error(data.message);
       }
     } catch (error) {
       toast.error(error.message);

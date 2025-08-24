@@ -100,14 +100,11 @@ const RemoveObject = () => {
               </div>
             </div>
           ) : (
-            <div className="mt-3 h-full">
-              {console.log(content)}
-              <img
-                src={content}
-                alt="image after object removal"
-                className="w-full h-full"
-              />
-            </div>
+            <img
+              src={content}
+              alt="image after object removal"
+              className="w-full h-full"
+            />
           )}
         </div>
       </div>
