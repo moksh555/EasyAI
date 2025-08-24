@@ -233,7 +233,7 @@ export const reviewResume = async (req, res) => {
 
     const content = response.choices[0].message.content;
 
-    await sql` INSERT INTO creations (user_id, prompt, content, type) VALUES (${userId},"Review the uploaded resume", ${content}, 'resume-review')`;
+    await sql` INSERT INTO creations (user_id, prompt, content, type) VALUES (${userId},'Review the uploaded resume', ${content}, 'resume-review')`;
 
     res.json({ success: true, content });
   } catch (error) {
