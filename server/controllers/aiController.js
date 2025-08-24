@@ -78,9 +78,9 @@ export const generateBlogTitle = async (req, res) => {
       max_tokens: 100,
     });
 
-    const title = response.choices[0].message.content;
+    const content = response.choices[0].message.content;
 
-    await sql` INSERT INTO creations (user_id, prompt, content, type) VALUES (${userId}, ${prompt}, ${title}, 'title')`;
+    await sql` INSERT INTO creations (user_id, prompt, content, type) VALUES (${userId}, ${prompt}, ${content}, 'blog-title')`;
 
     if (plan !== "premium") {
       await clerkClient.users.updateUserMetadata(userId, {
@@ -89,7 +89,7 @@ export const generateBlogTitle = async (req, res) => {
         },
       });
     }
-    res.json({ success: true, content: title });
+    res.json({ success: true, content });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }
@@ -107,11 +107,11 @@ export const generateImage = async (req, res) => {
         message: "Please upgrade to Premium to access this feature.",
       });
     }
-    const form = new FormData();
-    form.append("prompt", prompt);
+    const formData = new FormData();
+    formData.append("prompt", prompt);
     const { data } = await axios.post(
       "https://clipdrop-api.co/text-to-image/v1",
-      form,
+      formData,
       {
         headers: { "x-api-key": process.env.CLIPDROP_API_KEY },
         responseType: "arraybuffer",
@@ -210,7 +210,7 @@ export const reviewResume = async (req, res) => {
     }
 
     if (resume.size > 5 * 1024 * 1024) {
-      res.json({ sucess: "false", message: "File size exceeds allowed 5MB." });
+      res.json({ sucess: false, message: "File size exceeds allowed 5MB." });
     }
 
     const dataBuffer = fs.readFileSync(resume.path);
@@ -231,11 +231,11 @@ export const reviewResume = async (req, res) => {
       max_tokens: 1000,
     });
 
-    const resumeFeedback = response.choices[0].message.content;
+    const content = response.choices[0].message.content;
 
-    await sql` INSERT INTO creations (user_id, prompt, content, type) VALUES (${userId},${prompt}, ${response}, 'resume-review')`;
+    await sql` INSERT INTO creations (user_id, prompt, content, type) VALUES (${userId},"Review the uploaded resume", ${content}, 'resume-review')`;
 
-    res.json({ success: true, content: resumeFeedback });
+    res.json({ success: true, content });
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
