@@ -20,7 +20,7 @@ const Dashboard = () => {
       });
 
       if (data.success) {
-        setCreations(data.creation);
+        setCreations(data.creations);
       } else {
         toast.error(data.message);
       }
